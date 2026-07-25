@@ -1,0 +1,44 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "mcp__playwright__browser_fill_form|mcp__playwright__browser_type|mcp__playwright__browser_click",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell",
+            "args": [
+              "-NoProfile",
+              "-ExecutionPolicy",
+              "Bypass",
+              "-File",
+              ".claude/hooks/validate-enquiry-form.ps1"
+            ],
+            "timeout": 15,
+            "statusMessage": "Validating enquiry form..."
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "mcp__playwright__browser_click",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell",
+            "args": [
+              "-NoProfile",
+              "-ExecutionPolicy",
+              "Bypass",
+              "-File",
+              ".claude/hooks/speak-thank-you.ps1"
+            ],
+            "timeout": 20,
+            "statusMessage": "Speaking confirmation..."
+          }
+        ]
+      }
+    ]
+  }
+}

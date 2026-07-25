@@ -11,8 +11,19 @@ $RECYCLE.BIN/
 .vscode/
 *.code-workspace
 
+# Secrets and dependencies — nothing here today, kept as a guard rail
+.env
+.env.*
+node_modules/
+
+# Playwright MCP scratch output
+.playwright-mcp/
+
 # Claude Code local (per-machine) settings
 .claude/settings.local.json
+
+# Scratch state written by the enquiry-form hooks between fill and submit
+.claude/hooks/.enquiry-state.json
 
 # Installed agent skills — kept local, not published to the public repo.
 # .claude/skills is a Windows junction into .agents/skills.

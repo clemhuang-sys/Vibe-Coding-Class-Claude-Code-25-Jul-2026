@@ -36,6 +36,7 @@ Captured from the live site with Playwright.
 | Testimonials | Three sealed *colophons* in a responsive grid with a hover/focus lift |
 | FAQ | Five objection-handling questions (also emitted as FAQPage structured data) |
 | Footer | Contact link and back-to-top |
+| WhatsApp widget | Fixed bottom-right button; opens a panel of five suggested questions that hand off to WhatsApp with the message pre-filled |
 
 ## Running it
 
@@ -76,8 +77,8 @@ re-points those same variables, so anything built from tokens gets dark mode for
 Every media query is `min-width`; the base styles are the phone layout. A
 `prefers-reduced-motion` block disables transitions, animations and the card lift.
 
-**`script.js`** is an IIFE loaded with `defer`, covering two independent concerns: the
-mobile nav toggle and the enquiry form. Validation runs off a `rules` object keyed by
+**`script.js`** is an IIFE loaded with `defer`, covering three independent concerns: the
+mobile nav toggle, the enquiry form, and the WhatsApp widget. Validation runs off a `rules` object keyed by
 element id, and each rule's error text is written to the paragraph whose id is
 `<fieldId>-error`. Adding a required field therefore means three coordinated edits — the
 input, its matching error paragraph, and a rule function. A field with no rule entry is
@@ -104,6 +105,26 @@ var FORMSPREE_ENDPOINT = 'https://formspree.io/f/xdorwvpk';
 The `fetch()` path below the demo branch is already fully wired and takes over
 automatically. Formspree form IDs are designed to be client-visible, so committing one is
 expected rather than a leak.
+
+## The WhatsApp widget
+
+A fixed button in the bottom-right corner opens a panel of five suggested openers. Each one
+builds a `https://wa.me/<number>?text=<message>` link and opens it in a new tab, so the
+visitor lands in WhatsApp with the message already typed.
+
+Unlike the enquiry form, **this one is live** — clicking it starts a real conversation with
+a real phone. The number is a single constant near the top of `script.js`:
+
+```js
+var WHATSAPP_NUMBER = '6593223809';   // full international format, digits only, no '+'
+```
+
+Replace it with your own before reusing this page. `wa.me` will not resolve a national-format
+number — it needs the country code and no punctuation. Note that publishing a number here
+makes it publicly scrapeable; a WhatsApp Business number is the safer choice.
+
+The panel's questions live in `index.html`, each carrying the message it sends in a
+`data-wa-message` attribute, so the label a visitor reads sits next to the text it produces.
 
 ## Deployment
 

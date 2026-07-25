@@ -15,6 +15,14 @@
   var FORMSPREE_ENDPOINT = 'https://formspree.io/f/{YOUR_FORM_ID}';
   var IS_PLACEHOLDER = FORMSPREE_ENDPOINT.indexOf('{YOUR_FORM_ID}') !== -1;
 
+  /* ------------------------------------------------------------------------
+     WhatsApp number for the widget.
+
+     Full international format, digits only — country code first, no '+',
+     no spaces or dashes. wa.me will not resolve a national-format number.
+     ------------------------------------------------------------------------ */
+  var WHATSAPP_NUMBER = '6593223809';
+
   var prefersReducedMotion =
     window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -217,6 +225,57 @@
       .finally(function () {
         setSending(false);
       });
+  });
+
+  /* ------------------------------------------------------------------------
+     WhatsApp widget
+
+     The panel is a menu of openers; each question carries the message it
+     sends in data-wa-message, so the copy lives in index.html beside the
+     label the visitor reads.
+     ------------------------------------------------------------------------ */
+  var waRoot = document.getElementById('wa');
+  var waToggle = document.getElementById('wa-toggle');
+  var waPanel = document.getElementById('wa-panel');
+  var waClose = document.getElementById('wa-close');
+
+  function setWaOpen(open) {
+    waPanel.hidden = !open;
+    waToggle.setAttribute('aria-expanded', String(open));
+    if (open) {
+      var first = waPanel.querySelector('.wa__q');
+      if (first) first.focus();
+    }
+  }
+
+  waToggle.addEventListener('click', function () {
+    setWaOpen(waPanel.hidden);
+  });
+
+  waClose.addEventListener('click', function () {
+    setWaOpen(false);
+    waToggle.focus();
+  });
+
+  waPanel.addEventListener('click', function (event) {
+    var question = event.target.closest('[data-wa-message]');
+    if (!question) return;
+    var url = 'https://wa.me/' + WHATSAPP_NUMBER +
+      '?text=' + encodeURIComponent(question.dataset.waMessage);
+    window.open(url, '_blank', 'noopener');
+    setWaOpen(false);
+  });
+
+  // Escape closes it; so does a click anywhere outside the widget.
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape' && !waPanel.hidden) {
+      setWaOpen(false);
+      waToggle.focus();
+    }
+  });
+
+  document.addEventListener('click', function (event) {
+    if (!waPanel.hidden && !waRoot.contains(event.target)) setWaOpen(false);
   });
 
   /* ------------------------------------------------------------------------
