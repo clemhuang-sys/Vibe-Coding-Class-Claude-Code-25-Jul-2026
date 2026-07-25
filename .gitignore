@@ -13,3 +13,9 @@ $RECYCLE.BIN/
 
 # Claude Code local (per-machine) settings
 .claude/settings.local.json
+
+# Installed agent skills — kept local, not published to the public repo.
+# .claude/skills is a Windows junction into .agents/skills.
+.agents/
+.claude/skills/
+skills-lock.json
