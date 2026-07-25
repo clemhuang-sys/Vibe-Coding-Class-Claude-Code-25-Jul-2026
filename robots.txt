@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://clemhuang-sys.github.io/Vibe-Coding-Class-Claude-Code-25-Jul-2026/sitemap.xml

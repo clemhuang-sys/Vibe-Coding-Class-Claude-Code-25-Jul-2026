@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Meridian & Co. — nav toggle + enquiry form
+   Meridian & Co. — nav toggle, enquiry form, and quiet motion
    Vanilla JS, no dependencies.
    ========================================================================== */
 (function () {
@@ -13,8 +13,10 @@
      Until you do, the form runs in demo mode (see handleSubmit below).
      ------------------------------------------------------------------------ */
   var FORMSPREE_ENDPOINT = 'https://formspree.io/f/{YOUR_FORM_ID}';
-
   var IS_PLACEHOLDER = FORMSPREE_ENDPOINT.indexOf('{YOUR_FORM_ID}') !== -1;
+
+  var prefersReducedMotion =
+    window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ------------------------------------------------------------------------
      Footer year
@@ -66,7 +68,7 @@
       return '';
     },
     message: function (value) {
-      if (!value.trim()) return 'Please tell us a little about your project.';
+      if (!value.trim()) return 'Please tell us a little about what you\'re growing.';
       if (value.trim().length < 20) return 'Please add a bit more detail (20 characters or more).';
       return '';
     }
@@ -112,8 +114,8 @@
   }
 
   function onSuccess(firstName) {
-    setStatus('success', 'Thanks' + (firstName ? ', ' + firstName : '') +
-      ' — your enquiry is on its way. We\'ll reply within one working day.');
+    setStatus('success', 'Thank you' + (firstName ? ', ' + firstName : '') +
+      ' — your diagnostic is on its way. A consultant replies within one working day.');
     form.reset();
     Object.keys(rules).forEach(function (id) {
       showError(document.getElementById(id), '');
@@ -216,4 +218,48 @@
         setSending(false);
       });
   });
+
+  /* ------------------------------------------------------------------------
+     Quiet motion — scroll reveal + the seal "stamp"
+     Skipped entirely when the visitor prefers reduced motion, or when
+     IntersectionObserver isn't available.
+     ------------------------------------------------------------------------ */
+  if (!prefersReducedMotion && 'IntersectionObserver' in window) {
+    var revealTargets = document.querySelectorAll(
+      '.head, .discipline, .colophon, .offer, .form, .faq__item, .proof'
+    );
+    revealTargets.forEach(function (el) { el.classList.add('reveal'); });
+
+    var revealObserver = new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-in');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+
+    revealTargets.forEach(function (el) { revealObserver.observe(el); });
+
+    // Safety net: reveal is decorative only. If the observer never fires for an
+    // element (odd viewport, backgrounded tab, fullpage capture), it must never
+    // stay hidden — force everything visible after a short grace period.
+    window.setTimeout(function () {
+      revealTargets.forEach(function (el) { el.classList.add('is-in'); });
+    }, 2500);
+
+    // Stamp each CTA once, the first time it scrolls into view.
+    var stampObserver = new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-stamped');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.9 });
+
+    document.querySelectorAll('.btn[data-stamp]').forEach(function (el) {
+      stampObserver.observe(el);
+    });
+  }
 })();

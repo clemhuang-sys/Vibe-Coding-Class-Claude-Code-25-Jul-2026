@@ -2,7 +2,13 @@
 
 A single-page marketing site built for a Claude Code class: static HTML, CSS and vanilla
 JavaScript with **no frameworks, no build step, no package manager and no dependencies**
-beyond one Google Font.
+beyond Google Fonts.
+
+The design is a **modern Song-dynasty** direction — Ru-ware celadon, cinnabar-seal red and
+sumi ink on raw silk, with a vermilion scholar's seal as the signature motif. It doubles as
+a lead-magnet page (a free "Growth Diagnostic" offer around the enquiry form) and carries
+SEO scaffolding: JSON-LD structured data, Open Graph tags, a canonical URL, `robots.txt` and
+`sitemap.xml`.
 
 **Live:** https://clemhuang-sys.github.io/Vibe-Coding-Class-Claude-Code-25-Jul-2026/
 
@@ -17,16 +23,18 @@ Captured from the live site with Playwright.
 
 | Desktop — 1280×800 | Mobile — 390×844 |
 |---|---|
-| <img src="screenshots/desktop.png" width="620" alt="Desktop view: sticky nav with Home, Testimonials and Contact links, and a dark hero reading 'Marketing That Moves the Needle' above two call-to-action buttons and a three-stat proof strip."> | <img src="screenshots/mobile.png" width="200" alt="Mobile view of the same hero, with the navigation collapsed to a Menu button and the stats stacked vertically."> |
+| <img src="screenshots/desktop.png" width="620" alt="Desktop hero on a raw-silk background: a vermilion seal brand mark, a Cormorant headline reading 'Marketing consultancy for growth that compounds', two CTAs, a three-stat proof strip, faint celadon mountains, and a vertical brush-calligraphy couplet with a hanging red seal."> | <img src="screenshots/mobile.png" width="200" alt="Mobile view of the same hero with the navigation collapsed to a Menu button and the vertical calligraphy hidden."> |
 
 ## What's on the page
 
 | Section | Contents |
 |---|---|
-| Sticky nav | Brand, anchor links, CTA; collapses to a toggle button below 48rem |
-| Hero | Full-viewport headline, subheadline, two CTAs, three-stat proof strip |
-| Testimonials | Three cards in a responsive grid (1 → 2 → 3 columns) with a hover/focus lift |
-| Enquiry form | Name, Email, Company (optional), Message — validated in JS, submits to Formspree |
+| Sticky nav | Seal brand mark, anchor links, CTA; collapses to a toggle button below 48rem |
+| Hero | Full-viewport headline, subheadline, two CTAs, three-stat proof strip, calligraphy signature |
+| Services | Four disciplines (positioning, demand, brand, measurement) with hanzi glyphs |
+| Lead magnet | Free "Growth Diagnostic" offer — what's-inside bullets, preview, social proof, enquiry form |
+| Testimonials | Three sealed *colophons* in a responsive grid with a hover/focus lift |
+| FAQ | Five objection-handling questions (also emitted as FAQPage structured data) |
 | Footer | Contact link and back-to-top |
 
 ## Running it

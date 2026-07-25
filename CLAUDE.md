@@ -4,7 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-A single-page marketing site for **Meridian & Co.**, a fictional marketing consultancy. Built as a teaching/demo artefact: static HTML, CSS and vanilla JS with **no frameworks, no build step, no package manager, and no dependencies** beyond one Google Font `<link>`.
+A single-page marketing site for **Meridian & Co.**, a fictional B2B marketing consultancy. Built as a teaching/demo artefact: static HTML, CSS and vanilla JS with **no frameworks, no build step, no package manager, and no dependencies** beyond Google Fonts `<link>`s.
+
+The visual language is a **modern Song-dynasty** direction — Ru-ware celadon, cinnabar-seal red and sumi ink on a raw-silk ground, with a vermilion scholar's **seal** (`.seal`, ice-crack glaze border) as the signature element: it's the brand mark, "stamps" the primary CTAs on scroll, and seals each testimonial (testimonials are framed as *colophons*). Type is Cormorant Garamond (display), Spectral (body) and Ma Shan Zheng (the hanzi brush accents). The page is also built as a **lead magnet** — the enquiry form is framed as a free "Growth Diagnostic" with a preview, social proof and an FAQ — and carries SEO scaffolding (JSON-LD `@graph`, Open Graph/Twitter, canonical, `robots.txt`, `sitemap.xml`).
 
 All company details, statistics and testimonials are invented placeholder copy. Treat them as such — don't present them as real, and flag them if the site is ever headed somewhere public.
 
@@ -31,14 +33,15 @@ Three files, strictly separated — markup in `index.html`, all styling in `styl
 
 ### styles.css — token-driven, mobile-first
 
-Every colour, space, radius and shadow is a custom property on `:root`. **Use the tokens; don't write ad-hoc pixel or hex values** — spacing comes from the `--space-1`…`--space-6` scale. A `prefers-color-scheme: dark` block re-points the same variables, so anything built from tokens gets dark mode for free and anything hard-coded breaks it.
+Every colour, space, radius and shadow is a custom property on `:root`. **Use the tokens; don't write ad-hoc pixel or hex values** — spacing comes from the `--space-1`…`--space-7` scale; the palette is `--paper`/`--silk`/`--ink*`, `--celadon*`, `--seal*`. A `prefers-color-scheme: dark` block re-points the same variables (silk→night-ink, celadon and cinnabar brighten), so anything built from tokens gets dark mode for free and anything hard-coded breaks it.
 
 Other conventions that are load-bearing:
 
 - **Every media query is `min-width`.** Base styles are the phone layout. Adding a `max-width` query inverts the cascade this file depends on.
 - `color-mix()` is always preceded by a plain-colour fallback declaration on the same property. Preserve that pairing.
-- A `prefers-reduced-motion` block kills all transitions/animations and the card hover lift. New motion must be covered by it.
+- A `prefers-reduced-motion` block kills all transitions/animations, the card hover lift, and the scroll-reveal. New motion must be covered by it.
 - `scroll-padding-top` is keyed to `--nav-h` so anchor targets clear the sticky nav — changing the nav height means changing that token, not the padding.
+- **Scroll-reveal is decorative only.** `script.js` adds `.reveal` (opacity 0) then clears it on intersection, but a 2.5s safety timeout force-reveals everything regardless — content must never depend on the observer to be visible (it also means non-JS and reduced-motion visitors see everything). Keep that safety net if you touch the reveal code.
 
 ### script.js — nav toggle + form
 
