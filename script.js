@@ -120,6 +120,13 @@
     });
   }
 
+  // Demo mode is neither success nor failure. Say plainly that nothing was sent,
+  // and leave the fields filled — a reset would imply the message went somewhere.
+  function onDemo() {
+    setStatus('notice', 'Demo mode — your message was not sent. This form isn\'t ' +
+      'connected to a mailbox; the payload was logged to the browser console instead.');
+  }
+
   function onFailure(message) {
     setStatus('error', message ||
       'Sorry, we couldn\'t send that. Please email hello@meridianco.example instead.');
@@ -160,13 +167,15 @@
 
     // ---- 3. Demo mode ----------------------------------------------------
     // No real endpoint yet, so skip the network call rather than showing an
-    // error for a 404. Delete this block once you paste in your form ID.
+    // error for a 404. This must NOT claim success: the page is public, and
+    // telling a visitor their enquiry is on its way when it was discarded is a
+    // lie. Delete this block once you paste in your form ID.
     if (IS_PLACEHOLDER) {
       setSending(true);
       console.log('Enquiry (demo mode — no form ID set):', payload);
       window.setTimeout(function () {
         setSending(false);
-        onSuccess(firstName);
+        onDemo();
       }, 600);
       return;
     }

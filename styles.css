@@ -506,6 +506,26 @@ input[aria-invalid="true"]:focus, textarea[aria-invalid="true"]:focus {
   background: color-mix(in srgb, var(--danger) 10%, transparent);
   border: 1px solid var(--danger);
 }
+/* Demo mode: neither success nor failure — nothing was sent. */
+.form__status[data-state="notice"] {
+  display: block;
+  background: var(--accent-soft);       /* fallback */
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+  border: 1px solid var(--accent);
+}
+
+/* Standing warning above the fields, so nobody types real details first. */
+.form__note {
+  margin: 0 0 var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  border: 1px dashed var(--accent);
+  border-radius: var(--radius-sm);
+  background: var(--accent-soft);       /* fallback */
+  background: color-mix(in srgb, var(--accent) 7%, transparent);
+  color: var(--ink);
+  font-size: .8125rem;
+  line-height: 1.5;
+}
 
 /* --------------------------------------------------------------------------
    9. Footer

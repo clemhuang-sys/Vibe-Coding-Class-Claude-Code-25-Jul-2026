@@ -56,7 +56,7 @@ The form carries `novalidate` — the custom JS owns validation entirely, so bro
 
 ### Two gotchas worth not re-discovering
 
-1. **Demo mode is intentional.** `FORMSPREE_ENDPOINT` at the top of `script.js` still contains the `{YOUR_FORM_ID}` placeholder. `IS_PLACEHOLDER` detects this and short-circuits submission — it logs the payload and fakes success instead of POSTing, because a real request to the placeholder URL would 404 and make the form impossible to demo. The live `fetch()` path below it is fully wired and runs as soon as a real form ID is pasted in. Don't "fix" the missing network call by deleting the branch unless a real endpoint is being added.
+1. **Demo mode is intentional, and it must stay honest.** `FORMSPREE_ENDPOINT` at the top of `script.js` still contains the `{YOUR_FORM_ID}` placeholder. `IS_PLACEHOLDER` detects this and short-circuits submission — it logs the payload and calls `onDemo()`, which shows a `data-state="notice"` message saying plainly that nothing was sent. A real request to the placeholder URL would 404, so the network call is skipped deliberately. **Do not make this branch claim success.** The site is deployed publicly at GitHub Pages, so a "your enquiry is on its way" message would tell real visitors their message was delivered when it was discarded; there is also a standing `.form__note` warning above the fields. The live `fetch()` path below is fully wired and takes over the moment a real form ID is pasted in — at which point `onSuccess()` becomes truthful and both the notice and the form note should go.
 
 2. **Read inputs via `form.elements.name`, never `form.name`.** `HTMLFormElement.name` reflects the form's own attribute and shadows the named-input getter, so `form.name.value` throws.
 

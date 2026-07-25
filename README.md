@@ -79,8 +79,13 @@ treated as optional, which is why `company` validates silently.
 
 The form is wired to Formspree but ships in **demo mode**. `FORMSPREE_ENDPOINT` at the top
 of `script.js` still holds the `{YOUR_FORM_ID}` placeholder, so submitting logs the payload
-to the console and shows the success state instead of making a request — a real POST to the
-placeholder URL would 404 and make the form impossible to demo.
+to the browser console and makes no network request — a real POST to the placeholder URL
+would 404 and make the form impossible to demo.
+
+Because the site is deployed publicly, demo mode says so rather than faking success: there
+is a standing notice above the fields, and submitting returns *"Demo mode — your message
+was not sent."* Validation, the sending state and the error paths are all real; only the
+delivery is absent. **Nothing typed into the live form reaches anyone.**
 
 To go live, paste a real form ID from your Formspree dashboard:
 
