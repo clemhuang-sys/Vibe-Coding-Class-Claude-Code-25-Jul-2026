@@ -11,6 +11,14 @@ beyond one Google Font.
 > placeholder copy written to fill the layout. Replace it before this is used for anything
 > real.
 
+## Screenshots
+
+Captured from the live site with Playwright.
+
+| Desktop — 1280×800 | Mobile — 390×844 |
+|---|---|
+| <img src="screenshots/desktop.png" width="620" alt="Desktop view: sticky nav with Home, Testimonials and Contact links, and a dark hero reading 'Marketing That Moves the Needle' above two call-to-action buttons and a three-stat proof strip."> | <img src="screenshots/mobile.png" width="200" alt="Mobile view of the same hero, with the navigation collapsed to a Menu button and the stats stacked vertically."> |
+
 ## What's on the page
 
 | Section | Contents |
@@ -50,6 +58,8 @@ index.html    markup only
 styles.css    all styling — token-driven, mobile-first
 script.js     all behaviour — nav toggle + form
 CLAUDE.md     guidance for Claude Code sessions in this repo
+screenshots/  README images, captured from the live site
+.mcp.json     project-level MCP servers (Playwright, for browser automation)
 ```
 
 **`styles.css`** builds everything from custom properties on `:root` — colour, spacing
