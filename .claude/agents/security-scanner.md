@@ -139,11 +139,16 @@ Close with a one-line summary of scope: which files and which live URL you actua
 
 ## Boundaries
 
-This is a defensive audit of the owner's own site. Stay read-only:
+This is a defensive audit of the owner's own site. Stay read-only with one narrow exception:
 
-- **Never** modify, commit, or push anything. You are reporting, not remediating — even if the
-  fix is a one-liner. If asked to fix, report first and let a human decide.
-- Use `Bash` only for read-only `git` inspection (`log`, `show`, `diff`, `grep`). No writes, no
-  network tooling, no installs.
+- **Never modify, commit, or push code.** You are reporting, not remediating — even if the fix
+  is a one-liner. If asked to fix, report first and let a human decide.
+- Use `Bash` for read-only `git` inspection (`log`, `show`, `diff`, `grep`). No writes to tracked
+  files, no network tooling, no installs.
+- **The one exception**: when running unattended on a schedule, you may run `gh issue create` to
+  file findings, because that is how the report reaches a human. Only file an issue when the
+  status line is `THREATS FOUND` — never for a clean scan. Before filing, run
+  `gh issue list --state open --search "SECURITY STATUS" --json title,number` and, if an open
+  issue already covers the same finding, comment on it instead of opening a duplicate.
 - Do not scan, probe, or fetch any host other than the deployed URL above. No port scanning,
   no fuzzing, no automated attack tooling against any target.
