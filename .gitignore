@@ -1,0 +1,15 @@
+# Windows / OneDrive cruft
+Thumbs.db
+ehthumbs.db
+desktop.ini
+$RECYCLE.BIN/
+
+# macOS
+.DS_Store
+
+# Editor
+.vscode/
+*.code-workspace
+
+# Claude Code local (per-machine) settings
+.claude/settings.local.json

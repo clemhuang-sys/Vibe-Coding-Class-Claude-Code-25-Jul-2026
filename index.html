@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Meridian &amp; Co. — Marketing Consultancy</title>
+<meta name="description" content="Meridian &amp; Co. is a marketing consultancy that turns positioning, demand generation and brand strategy into measurable growth.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="styles.css">
+<script src="script.js" defer></script>
+</head>
+<body id="home">
+
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="nav">
+  <div class="container nav__inner">
+    <a class="brand" href="#home">
+      <span class="brand__mark" aria-hidden="true">M</span>
+      Meridian &amp; Co.
+    </a>
+
+    <nav aria-label="Main">
+      <button class="nav__toggle" type="button" id="nav-toggle"
+              aria-expanded="false" aria-controls="nav-menu">
+        <span class="nav__bars" aria-hidden="true"></span>
+        Menu
+      </button>
+
+      <ul class="nav__menu" id="nav-menu" data-open="false">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a class="btn btn--accent btn--sm" href="#contact">Get in touch</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- 1. Hero -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="container hero__inner">
+      <p class="eyebrow">Growth strategy &amp; demand generation</p>
+
+      <h1 id="hero-title">Marketing That Moves the Needle</h1>
+
+      <p class="hero__sub">
+        We help ambitious B2B and consumer brands sharpen their positioning, build
+        demand engines that compound, and prove the return on every pound spent.
+      </p>
+
+      <div class="hero__actions">
+        <a class="btn btn--accent btn--lg" href="#contact">Book a strategy call</a>
+        <a class="btn btn--outline btn--lg" href="#testimonials">See client results</a>
+      </div>
+
+      <ul class="proof">
+        <li>
+          <span class="proof__figure">3.8×</span>
+          <span class="proof__label">Average return on marketing spend</span>
+        </li>
+        <li>
+          <span class="proof__figure">60+</span>
+          <span class="proof__label">Brands guided since 2016</span>
+        </li>
+        <li>
+          <span class="proof__figure">92%</span>
+          <span class="proof__label">Of clients renew after year one</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 2. Testimonials -->
+  <section class="section" id="testimonials" aria-labelledby="testimonials-title">
+    <div class="container">
+      <div class="section__head">
+        <p class="eyebrow eyebrow--dark">Testimonials</p>
+        <h2 id="testimonials-title">What Our Clients Say</h2>
+        <p class="section__lead">
+          Three of the teams we've worked alongside over the past two years.
+        </p>
+      </div>
+
+      <div class="cards">
+        <figure class="card">
+          <p class="card__stars" aria-label="Rated 5 out of 5"><span aria-hidden="true">★★★★★</span></p>
+          <blockquote class="card__quote">
+            “They rewrote our positioning in six weeks and our pipeline stopped being
+            a guessing game. Cost per qualified lead fell by 41% in the first quarter.”
+          </blockquote>
+          <figcaption class="card__person">
+            <span class="avatar" aria-hidden="true">HO</span>
+            <span>
+              <span class="card__name">Hannah Osei</span>
+              <span class="card__role">Head of Growth, Fernwood Interiors</span>
+            </span>
+          </figcaption>
+        </figure>
+
+        <figure class="card">
+          <p class="card__stars" aria-label="Rated 5 out of 5"><span aria-hidden="true">★★★★★</span></p>
+          <blockquote class="card__quote">
+            “Meridian took a scattered content programme and turned it into a demand
+            engine. We now know exactly which channels earn their budget — and which don't.”
+          </blockquote>
+          <figcaption class="card__person">
+            <span class="avatar" aria-hidden="true">TL</span>
+            <span>
+              <span class="card__name">Tomás Lindqvist</span>
+              <span class="card__role">CMO, Arbor Financial</span>
+            </span>
+          </figcaption>
+        </figure>
+
+        <figure class="card">
+          <p class="card__stars" aria-label="Rated 5 out of 5"><span aria-hidden="true">★★★★★</span></p>
+          <blockquote class="card__quote">
+            “Straight-talking, numbers-first, no fluff. They pushed back on half our
+            assumptions in week one and every one of those calls turned out to be right.”
+          </blockquote>
+          <figcaption class="card__person">
+            <span class="avatar" aria-hidden="true">PN</span>
+            <span>
+              <span class="card__name">Priya Nair</span>
+              <span class="card__role">Founder, Coastline Wellness</span>
+            </span>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Enquiry form -->
+  <section class="section section--alt" id="contact" aria-labelledby="contact-title">
+    <div class="container contact">
+      <div class="contact__intro">
+        <p class="eyebrow eyebrow--dark">Enquiries</p>
+        <h2 id="contact-title">Let's talk about your growth</h2>
+        <p class="section__lead">
+          Tell us where you're stuck. You'll hear back from a consultant — not a
+          sales team — within one working day.
+        </p>
+
+        <ul class="ticks">
+          <li><span class="tick" aria-hidden="true">✓</span>
+            <span><strong>Free 45-minute audit</strong>No pitch deck, no obligation.</span></li>
+          <li><span class="tick" aria-hidden="true">✓</span>
+            <span><strong>Fixed-scope proposals</strong>Costed plans you can take anywhere.</span></li>
+          <li><span class="tick" aria-hidden="true">✓</span>
+            <span><strong>Reporting you'll actually read</strong>One page, one number that matters.</span></li>
+        </ul>
+      </div>
+
+      <form class="form" id="enquiry-form" novalidate>
+        <h3 class="visually-hidden">Enquiry form</h3>
+
+        <div class="field">
+          <label for="name">Name <span class="req" aria-hidden="true">*</span></label>
+          <input type="text" id="name" name="name" autocomplete="name"
+                 required aria-required="true" aria-describedby="name-error">
+          <p class="error" id="name-error" role="alert"></p>
+        </div>
+
+        <div class="field">
+          <label for="email">Email <span class="req" aria-hidden="true">*</span></label>
+          <input type="email" id="email" name="email" autocomplete="email"
+                 required aria-required="true" aria-describedby="email-error">
+          <p class="error" id="email-error" role="alert"></p>
+        </div>
+
+        <div class="field">
+          <label for="company">Company <span class="optional">(optional)</span></label>
+          <input type="text" id="company" name="company" autocomplete="organization"
+                 aria-describedby="company-hint">
+          <p class="hint" id="company-hint">Helps us come prepared to the call.</p>
+        </div>
+
+        <div class="field">
+          <label for="message">Message <span class="req" aria-hidden="true">*</span></label>
+          <textarea id="message" name="message" required aria-required="true"
+                    aria-describedby="message-hint message-error"
+                    placeholder="What are you trying to grow, and what have you tried so far?"></textarea>
+          <p class="hint" id="message-hint">At least 20 characters.</p>
+          <p class="error" id="message-error" role="alert"></p>
+        </div>
+
+        <button class="btn btn--accent btn--block" type="submit" id="submit-btn">
+          Send enquiry
+        </button>
+
+        <p class="form__status" id="form-status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <p>© <span id="year">2026</span> Meridian &amp; Co. Marketing Consultancy.</p>
+    <p>
+      <a href="mailto:hello@meridianco.example">hello@meridianco.example</a>
+      <span aria-hidden="true">·</span>
+      <a href="#home">Back to top</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
